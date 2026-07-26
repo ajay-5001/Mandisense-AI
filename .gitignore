@@ -1,0 +1,54 @@
+# Logs
+*.log
+logs
+
+# Dependency directories
+node_modules/
+jspm_packages/
+web_resources/
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+python/
+
+# Python build/cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+
+# Frontend builds
+frontend/dist/
+frontend/dist-ssr/
+frontend/node_modules/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment configurations (Secrets)
+.env
+.env*.local
+backend/.env
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
