@@ -5,6 +5,7 @@ import {
 } from 'recharts'
 import Button from '../components/ui/Button.jsx'
 import Badge from '../components/ui/Badge.jsx'
+import { getApiUrl } from '../utils/api'
 
 const ITEMS = [
   { id: 1, name: 'Tomato' }, { id: 2, name: 'Onion' }, { id: 3, name: 'Potato' },
@@ -121,7 +122,7 @@ export default function TrendsPage({ regionId, language }) {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`/api/trends/${selectedItem}/${regionId}?days=${days}`)
+    fetch(getApiUrl(`/api/trends/${selectedItem}/${regionId}?days=${days}`))
       .then(r => r.json())
       .then(d => { setTrends(d); setLoading(false) })
       .catch(() => setLoading(false))

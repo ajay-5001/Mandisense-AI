@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Badge from '../components/ui/Badge.jsx'
 import Button from '../components/ui/Button.jsx'
+import { getApiUrl } from '../utils/api'
 
 const TRANSLATIONS = {
   en: {
@@ -40,7 +41,7 @@ export default function InventoryPage({ regionId, language }) {
 
   useEffect(() => {
     setLoading(true)
-    fetch(`/api/inventory/${regionId}?lang=${language}`)
+    fetch(getApiUrl(`/api/inventory/${regionId}?lang=${language}`))
       .then(r => { if (!r.ok) throw new Error('Failed'); return r.json() })
       .then(d => { setInventory(d); setLoading(false) })
       .catch(() => setLoading(false))

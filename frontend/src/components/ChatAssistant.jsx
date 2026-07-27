@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { getApiUrl } from '../utils/api'
 
 const TRANSLATIONS = {
   en: {
@@ -90,7 +91,7 @@ export default function ChatAssistant({ regionId, language }) {
 
     try {
       const apiKey = getApiKey()
-      const res = await fetch('/api/chat', {
+      const res = await fetch(getApiUrl('/api/chat'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

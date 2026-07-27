@@ -3,6 +3,7 @@ import Modal from '../components/ui/Modal.jsx'
 import Button from '../components/ui/Button.jsx'
 import Badge from '../components/ui/Badge.jsx'
 import Dropdown from '../components/ui/Dropdown.jsx'
+import { getApiUrl } from '../utils/api'
 
 const CATEGORIES = ['vegetable', 'fruit', 'grain', 'spice', 'flower', 'other']
 const CATEGORY_ICONS = { vegetable: '🥬', fruit: '🍎', grain: '🌾', spice: '🌶️', flower: '🌸', other: '📦' }
@@ -23,7 +24,7 @@ export default function ProductsPage({ language }) {
 
   const loadProducts = () => {
     setLoading(true)
-    fetch('/api/products')
+    fetch(getApiUrl('/api/products'))
       .then(r => r.json())
       .then(d => { setProducts(d); setLoading(false) })
       .catch(() => setLoading(false))
@@ -49,7 +50,7 @@ export default function ProductsPage({ language }) {
     const payload = { name, category, unit, purchase_price: parseFloat(purchasePrice), selling_price: parseFloat(sellingPrice), current_stock: parseFloat(currentStock), supplier_name: supplierName || null }
     const url = editingProduct ? `/api/products/${editingProduct.id}` : '/api/products'
     const method = editingProduct ? 'PUT' : 'POST'
-    fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    fetch(getApiUrl(url), { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
       .then(r => { if (!r.ok) throw new Error('Failed'); return r.json() })
       .then(() => { setShowModal(false); loadProducts() })
       .catch(err => alert(err.message))
@@ -57,7 +58,7 @@ export default function ProductsPage({ language }) {
 
   const handleDelete = (id) => {
     if (!window.confirm('Delete this product? All related data will be removed.')) return
-    fetch(`/api/products/${id}`, { method: 'DELETE' }).then(() => loadProducts()).catch(err => alert(err.message))
+    fetch(getApiUrl(`/api/products/${id}`), { method: 'DELETE' }).then(() => loadProducts()).catch(err => alert(err.message))
   }
 
   const filtered = products.filter(p =>

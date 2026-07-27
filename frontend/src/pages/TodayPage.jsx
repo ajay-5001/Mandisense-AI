@@ -4,6 +4,7 @@ import Badge from '../components/ui/Badge.jsx'
 import Button from '../components/ui/Button.jsx'
 import Dropdown from '../components/ui/Dropdown.jsx'
 import Modal from '../components/ui/Modal.jsx'
+import { getApiUrl } from '../utils/api'
 
 const FILTER_OPTIONS = [
   { id: 'all',      labelKey: 'all',      icon: 'apps' },
@@ -126,7 +127,7 @@ export default function TodayPage({ regionId, language }) {
 
   // Load purchase plans
   useEffect(() => {
-    fetch('/api/purchase-plans')
+    fetch(getApiUrl('/api/purchase-plans'))
       .then(r => r.json())
       .then(data => {
         const m = {}
@@ -141,7 +142,7 @@ export default function TodayPage({ regionId, language }) {
     setLoading(true)
     setError(null)
     const apiKey = localStorage.getItem('gemini_api_key') || ''
-    fetch(`/api/recommend/all/${regionId}?lang=${language}`, {
+    fetch(getApiUrl(`/api/recommend/all/${regionId}?lang=${language}`), {
       headers: apiKey ? { 'X-Gemini-Key': apiKey } : {},
     })
       .then(r => { if (!r.ok) throw new Error('Server error'); return r.json() })
@@ -153,7 +154,7 @@ export default function TodayPage({ regionId, language }) {
   useEffect(() => {
     setLoadingSummary(true)
     const apiKey = localStorage.getItem('gemini_api_key') || ''
-    fetch(`/api/ai-summary/${regionId}?lang=${language}`, {
+    fetch(getApiUrl(`/api/ai-summary/${regionId}?lang=${language}`), {
       headers: apiKey ? { 'X-Gemini-Key': apiKey } : {},
     })
       .then(r => r.json())
@@ -165,7 +166,7 @@ export default function TodayPage({ regionId, language }) {
   useEffect(() => {
     if (!comparisonProduct) return
     setLoadingCompare(true)
-    fetch(`/api/compare/${encodeURIComponent(comparisonProduct)}`)
+    fetch(getApiUrl(`/api/compare/${encodeURIComponent(comparisonProduct)}`))
       .then(r => r.json())
       .then(d => { setComparisonData(d); setLoadingCompare(false) })
       .catch(() => setLoadingCompare(false))
@@ -184,7 +185,7 @@ export default function TodayPage({ regionId, language }) {
       product_name: r.item_name,
       planned_qty: parseFloat(purchasePlans[r.item_name.toLowerCase()] || 0),
     }))
-    fetch('/api/purchase-plans', {
+    fetch(getApiUrl('/api/purchase-plans'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -498,7 +499,7 @@ export default function TodayPage({ regionId, language }) {
                       onClick={async () => {
                         const apiKey = localStorage.getItem('gemini_api_key') || ''
                         try {
-                          const res = await fetch(`/api/recommend/${rec.item_id}/${regionId}?lang=${language}`, {
+                          const res = await fetch(getApiUrl(`/api/recommend/${rec.item_id}/${regionId}?lang=${language}`), {
                             headers: apiKey ? { 'X-Gemini-Key': apiKey } : {},
                           })
                           setSelectedRecDetails(await res.json())
