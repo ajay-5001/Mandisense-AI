@@ -5,7 +5,7 @@
 
 ---
 
-### 🌐 [Live Demo (Production Link)](https://mandisense.vercel.app) | 🖥️ [Local Instance](http://localhost:5173)
+### 🌐 [Live Demo (Production Link)]([https://mandisense.vercel.app](https://mandisense-ai.vercel.app/)) | 🖥️ [Local Instance](http://localhost:5173)
 
 ---
 
