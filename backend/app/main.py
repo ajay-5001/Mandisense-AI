@@ -31,6 +31,8 @@ else:
         "http://localhost:5173",
         "http://localhost:3000",
         "https://mandisense-7v7zd1p9z-ajay902520-5616s-projects.vercel.app",
+        "https://mandisense-ajay902520-5616s-projects.vercel.app",
+        "https://mandisense-git-main-ajay902520-5616s-projects.vercel.app",
         "https://mandisense.vercel.app",
     ]
 
