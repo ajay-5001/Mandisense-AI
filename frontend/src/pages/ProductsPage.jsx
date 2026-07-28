@@ -8,6 +8,13 @@ import { getApiUrl } from '../utils/api'
 const CATEGORIES = ['vegetable', 'fruit', 'grain', 'spice', 'flower', 'other']
 const CATEGORY_ICONS = { vegetable: '🥬', fruit: '🍎', grain: '🌾', spice: '🌶️', flower: '🌸', other: '📦' }
 
+const FormField = ({ label, children }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--s-2)' }}>
+    <label className="form-label">{label}</label>
+    {children}
+  </div>
+)
+
 export default function ProductsPage({ language }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -66,12 +73,7 @@ export default function ProductsPage({ language }) {
     p.category.toLowerCase().includes(search.toLowerCase())
   )
 
-  const FormField = ({ label, children }) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--s-2)' }}>
-      <label className="form-label">{label}</label>
-      {children}
-    </div>
-  )
+
 
   return (
     <div className="page-content">
