@@ -5,7 +5,7 @@
 
 ---
 
-### 🌐 [Live Demo](https://agent-6a684e965fb19f--coruscating-youtiao-cbe4dc.netlify.app/) | 🖥️ [Local Instance](http://localhost:5173)
+### 🌐 [Live Demo](https://agent-6a684e965fb19f--mandisense.netlify.app/) | 🖥️ [Local Instance](http://localhost:5173)
 
 ---
 
